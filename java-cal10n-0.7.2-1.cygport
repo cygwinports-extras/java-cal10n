@@ -1,0 +1,22 @@
+inherit java
+
+DESCRIPTION="Java Compiler Assisted Localization"
+HOMEPAGE="http://cal10n.qos.ch/"
+SRC_URI="http://cal10n.qos.ch/dist/${P#java-}.tar.gz"
+
+DISTCLEANFILES="*.jar"
+
+src_compile() {
+	lndirs
+	cd ${B}/cal10n-api
+	mkdir -p build/classes
+	cygjavac -d build/classes $(find src/main/java -name '*.java')
+	cygjavadoc -d build/javadoc -sourcepath src/main/java -subpackages ch.qos.cal10n
+	cygjar cf ../cal10n-api-${PV}.jar -C build/classes ch
+}
+
+src_install() {
+	cd ${B}
+	dojar *.jar
+	dojavadoc cal10n-api/build/javadoc
+}

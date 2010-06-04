@@ -1,0 +1,6 @@
+category: Java
+requires: 
+sdesc: "Java Compiler Assisted Localization"
+ldesc: "Compiler Assisted Localization, abbreviated as CAL10N (pronounced 
+as 'calion') is a java library for writing localized (internationalized) 
+messages."
